@@ -1,0 +1,169 @@
+<style>
+    .priceinfo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        height: 96px;
+        background: var(--white);
+        border-top: 1px solid var(--gray-300);
+        z-index: var(--z-navbar);
+    }
+    .priceinfo > div {
+        width: 50vh;
+        max-width: var(--harf-max-width);
+        margin: 0 4rem;
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .priceinfo > .left {
+        justify-content: flex-start;
+    }
+    .priceinfo > .right {
+        justify-content: flex-end;
+    }
+    .priceinfo > div > span {
+        margin-right: 2rem;
+        font-size: 1rem;
+    }
+    .priceinfo > div > .totalprice {
+        font-size: 1.75rem;
+    }
+    .priceinfo > div > .totalprice > strong {
+        font-family: var(--fontBold);
+    }
+    .priceinfo > div > form {
+        display: flex;
+        flex-direction: row;
+    }
+    .priceinfo > div > form > .amount {
+        display: flex;
+        flex-direction: row;
+        margin-right: 1rem;
+        border: 1px solid var(--gray-300);
+        border-radius: var(--border-radius-m);
+    }
+    .priceinfo > div > form > .amount > input[type="button"] {
+        height: 3rem;
+        padding: 0 0.5rem;
+        background: none;
+        border: none;
+        font-family: var(--fontLight);
+        font-size: 1.25rem;
+        color: var(--gray-500);
+    }
+    .priceinfo > div > form > .amount > input[type="button"]:hover {
+        color: var(--gray-900);
+    }
+    .priceinfo > div > form > .amount > input[type="text"] {
+        width: 4rem;
+        height: 3rem;
+        padding: 0 0.75rem;
+        background: none;
+        border: none;
+        font-family: var(--fontBold);
+        font-size: 1rem;
+        text-align: center;
+        outline: none;
+    }
+    .priceinfo > div > form > .buy {
+        height: 3rem;
+        padding: 0 2rem;
+        background: var(--white);
+        border: 1px solid var(--primary);
+        border-right: none;
+        border-radius: var(--border-radius-m) 0 0 var(--border-radius-m);
+        font-family: var(--fontBold);
+        font-size: 1rem;
+        color: var(--primary);
+        transition: all 0.3s;
+    }
+    .priceinfo > div > form > .buy:hover {
+        background: var(--gray-900);
+        color: var(--white);
+    }
+    .priceinfo > div > form > .cart {
+        height: 3rem;
+        padding: 0 2rem;
+        background: var(--primary);
+        border: 1px solid var(--primary);
+        border-left: none;
+        border-radius: 0 var(--border-radius-m) var(--border-radius-m) 0;
+        font-family: var(--fontBold);
+        font-size: 1rem;
+        color: var(--white);
+        transition: all 0.3s;
+    }
+    .priceinfo > div > form > .cart:hover {
+        background: var(--gray-900);
+    }
+</style>
+<div class="priceinfo">
+    <div class="left">
+        <span>총 상품 금액</span>
+        <div class="totalprice">
+            <strong><%- book[0].discprice %></strong>원
+        </div>
+    </div>
+    <div class="right">
+        <form method="post">
+            <div class="amount">
+                <input
+                    class="minus"
+                    type="button"
+                    onclick="chgAmount('-')"
+                    value="-"
+                />
+                <input
+                    class="amountval"
+                    type="text"
+                    name="amount"
+                    value="1"
+                    min="1"
+                    onchange="chgTotal()"
+                />
+                <input
+                    class="minus"
+                    type="button"
+                    onclick="chgAmount('+')"
+                    value="+"
+                />
+            </div>
+            <input
+                class="buy"
+                type="submit"
+                formaction="/buy/<%-book[0].id%>"
+                value="구매"
+            />
+            <input
+                class="cart"
+                type="submit"
+                formaction="/cart/<%-book[0].id%>"
+                value="장바구니"
+            />
+        </form>
+    </div>
+</div>
+<script>
+    const price = parseInt($(".totalprice > strong").text());
+    function chgAmount(type) {
+        amount = parseInt($(".amountval").val());
+        if (type == "+") {
+            $(".amountval").val(amount + 1);
+        } else {
+            if (amount != 1) {
+                $(".amountval").val(amount - 1);
+            }
+        }
+        chgTotal();
+    }
+    function chgTotal() {
+        amount = parseInt($(".amountval").val());
+        $(".totalprice > strong").text(price * amount);
+    }
+</script>

@@ -1,0 +1,184 @@
+<style>
+    .bestseller {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100vw;
+        padding: 4rem 0;
+        background: var(--white);
+        color: var(--black);
+    }
+    .bestseller > .title {
+        font-size: 3rem;
+        font-family: var(--fontBold);
+    }
+    .bestseller > .title > strong {
+        background: linear-gradient(
+            to right bottom,
+            var(--primary),
+            var(--secondary)
+        );
+        color: transparent;
+        -webkit-background-clip: text;
+    }
+    .bestseller > .list {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100vw;
+        padding: 2rem 0 4rem 0;
+        overflow: scroll;
+    }
+    .bestseller > .list::-webkit-scrollbar {
+        display: none;
+    }
+    .bestseller > .list > .book {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 24rem;
+        border: 1px solid var(--gray-300);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-right: 0.5rem;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(4px);
+        box-shadow: 0 0.5rem 2rem var(--gray-300);
+        transition: all 0.25s;
+        z-index: 1;
+    }
+    .bestseller > .list > .book:hover {
+        background: var(--white);
+        backdrop-filter: none;
+        border: 2px solid var(--primary);
+        border-radius: 3rem;
+        transform: translate(0, -0.25rem);
+        transform: scale(1.075);
+        box-shadow: 0 0.5rem 2rem var(--gray-500);
+        z-index: 2;
+    }
+    .bestseller > .list > .book:first-child {
+        margin-left: 8rem;
+    }
+    .bestseller > .list > .book:last-child {
+        margin-right: 8rem;
+    }
+    .bestseller > .list > .book > .info > .rank {
+        background: linear-gradient(to right bottom, #4c83ff, #004fff);
+        color: transparent;
+        -webkit-background-clip: text;
+        font-family: var(--fontBold);
+        font-size: 3rem;
+    }
+    .bestseller > .list > .book > .info > .title {
+        width: 240px;
+        color: var(--black);
+        font-family: var(--fontBold);
+        font-size: 1.25rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .bestseller > .list > .book > .info > .discount,
+    .bestseller > .list > .book > .info > .non-discount {
+        color: #4c83ff;
+        font-family: var(--font);
+        font-size: 1rem;
+        text-decoration: line-through;
+    }
+    .bestseller > .list > .book > .info > .non-discount {
+        visibility: hidden;
+    }
+    .bestseller > .list > .book > .info > .price {
+        color: #004fff;
+        font-family: var(--fontBold);
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+    }
+    .bestseller > .list > .book > .info > .rating {
+        color: var(--gray-600);
+        font-family: var(--font);
+        font-size: 1rem;
+    }
+    .bestseller > #left,
+    .bestseller > #right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(4px);
+        border: none;
+        border-radius: 100rem;
+        box-shadow: 0 0 0.5rem var(--gray-300);
+        z-index: var(--z-navbar);
+        transition: all 0.3s;
+    }
+    .bestseller > #left:hover,
+    .bestseller > #right:hover {
+        background: var(--white);
+        color: var(--primary);
+        box-shadow: 0 0 0.625rem var(--gray-300);
+        transform: scale(1.1);
+    }
+    .bestseller > #left {
+        left: 2rem;
+    }
+    .bestseller > #right {
+        right: 2rem;
+    }
+</style>
+<div id="bestseller" class="bestseller page">
+    <button id="left" onclick="moveleft()">
+        <span class="material-icons">arrow_back</span>
+    </button>
+    <button id="right" onclick="moveright()">
+        <span class="material-icons">arrow_forward</span>
+    </button>
+    <div class="title">이달의 <strong>베스트셀러</strong></div>
+    <div class="list">
+        <% for(i = 0; i < 10; i++) { %>
+        <a class="book" href="/book/<%-book[i].id%>">
+            <div class="info">
+                <div class="rank"><%= i+1 %></div>
+                <div class="title"><%= book[i].title %></div>
+                <% if(book[i].discprice != 0) { %>
+                <div class="discount"><%= book[i].price %>원</div>
+                <div class="price"><%= book[i].discprice %>원</div>
+                <% } else { %>
+                <div class="non-discount"><%= book[i].price %>원</div>
+                <div class="price"><%= book[i].price %>원</div>
+                <% } %>
+                <div class="rating">👍 <%= book[i].rating %></div>
+            </div>
+        </a>
+        <% } %>
+    </div>
+</div>
+<script>
+    moveleft = function () {
+        temp = Math.floor($(".list").scrollLeft() / 298) + 1;
+        $(".list").animate(
+            {
+                scrollLeft: (temp - 2) * 298,
+            },
+            500
+        );
+    };
+    moveright = function () {
+        temp = Math.floor($(".list").scrollLeft() / 298) + 1;
+        $(".list").animate(
+            {
+                scrollLeft: temp * 298,
+            },
+            500
+        );
+    };
+</script>

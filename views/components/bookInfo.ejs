@@ -1,0 +1,122 @@
+<style>
+    .bookinfo {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .bookimg {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .bookimg > img {
+        margin: 3rem;
+        display: block;
+        width: 300px;
+        height: 425px;
+        background: var(--gray-300);
+    }
+    .bookdetail {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .bookdetail > span {
+        padding: 0.5rem 0;
+        width: 100%;
+        border-top: 1px solid var(--gray-300);
+        font-family: var(--fontBold);
+        font-size: 1.25rem;
+    }
+    .bookdetail > .badge {
+        margin-top: 3rem;
+    }
+    .bookdetail > .badge > .special {
+        padding: 0.125rem 0.25rem;
+        color: var(--white);
+        font-family: var(--fontBold);
+        font-size: 0.75rem;
+        background: var(--primary);
+        border: 1px solid var(--primary);
+        border-radius: var(--border-radius-s);
+    }
+    .bookdetail > .badge > .normal {
+        padding: 0.125rem 0.25rem;
+        color: var(--gray-600);
+        font-family: var(--fontBold);
+        font-size: 0.75rem;
+        border: 1px solid var(--gray-600);
+        border-radius: var(--border-radius-s);
+    }
+    .bookdetail > .title {
+        font-family: var(--fontBold);
+        font-size: 2rem;
+    }
+    .bookdetail > .rating {
+        margin-bottom: 3rem;
+        font-family: var(--fontBold);
+        font-size: 1rem;
+        color: var(--primary);
+    }
+    .bookdetail > .price {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: baseline;
+    }
+    .bookdetail > .price > .original {
+        text-decoration: line-through;
+        color: var(--gray-700);
+        font-size: 1rem;
+    }
+    .bookdetail > .price > .discount,
+    .bookdetail > .price > .non-discount {
+        margin-right: 0.5rem;
+        background: linear-gradient(
+            to right bottom,
+            var(--primary),
+            var(--secondary)
+        );
+        color: transparent;
+        -webkit-background-clip: text;
+        font-size: 2.5rem;
+    }
+    .bookdetail > .price > .discount > strong,
+    .bookdetail > .price > .non-discount > strong {
+        font-family: var(--fontBold);
+    }
+</style>
+<div class="bookinfo">
+    <div class="bookimg">
+        <img src="/images/errcover.png" alt="" onerror="" />
+    </div>
+    <div class="bookdetail">
+        <div class="badge">
+            <span class="special">베스트셀러</span>
+            <span class="special">신간</span>
+            <span class="normal">무료배송</span>
+        </div>
+        <div class="title"><%- book[0].title %></div>
+        <div class="rating">👍 <%- book[0].rating %></div>
+        <span>가격</span>
+        <div class="price">
+            <% if(book[0].discprice != 0) { %>
+            <div class="discount">
+                <strong><%- book[0].discprice %></strong>원
+            </div>
+            <div class="original">정가 <%- book[0].price %>원</div>
+            <% } else { %>
+            <div class="non-discount">정가 <%- book[0].price %>원</div>
+            <% } %>
+        </div>
+        <span>배송안내</span>
+        <div class="delivery">
+            <span>무료배송</span>
+        </div>
+    </div>
+</div>

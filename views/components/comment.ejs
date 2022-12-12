@@ -1,0 +1,101 @@
+<style>
+    .comment {
+        margin-bottom: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100vw;
+    }
+    .comment > .title {
+        width: 100vw;
+        display: flex;
+        font-family: var(--fontBold);
+        font-size: 2rem;
+    }
+    .comment > .title > span {
+        flex: 1;
+        text-align: center;
+    }
+    .comment > .posts {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 14rem;
+        overflow: scroll;
+    }
+    .comment > .posts::-webkit-scrollbar {
+        display: none;
+    }
+    .comment > .posts > .post {
+        margin-right: 0.5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border: 1px solid var(--gray-300);
+        border-radius: var(--border-radius-m);
+        transition: all 0.3s;
+    }
+    .comment > .posts > .post:hover {
+        border: 2px solid var(--primary);
+    }
+    .comment > .posts > .post:first-child {
+        margin-left: 10vw;
+    }
+    .comment > .posts > .post:last-child {
+        margin-right: 10vw;
+    }
+    .comment > .posts > .post > .userinfo {
+        margin-bottom: 0.5rem;
+        width: 14rem;
+        font-family: var(--fontBold);
+    }
+    .comment > .posts > .post > .userinfo > strong {
+        margin-right: 0.25rem;
+        padding: 0.125rem 0.25rem;
+        background: var(--primary);
+        border-radius: var(--border-radius-s);
+        font-size: 0.75rem;
+        color: var(--white);
+    }
+    .comment > .posts > .post > .text {
+        width: 14rem;
+        height: 8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+<div class="comment">
+    <div class="title">
+        <span>사용자 리뷰</span>
+    </div>
+    <div class="posts">
+        <% for(var i = 0; i < 20; i++) { %>
+        <div class="post">
+            <div class="userinfo">
+                <% if(i<3) { %>
+                <strong>BEST</strong>
+                <% } %> userid
+            </div>
+            <div class="text">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

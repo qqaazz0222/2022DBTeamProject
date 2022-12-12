@@ -1,0 +1,145 @@
+<style>
+    .signup {
+        width: 100vw;
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .signup > .title {
+        margin-bottom: 0.5rem;
+        font-family: var(--fontBold);
+        font-size: 2rem;
+    }
+    .signup > .subtitle {
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        color: var(--gray-500);
+    }
+    .signup > .data,
+    .signup > .data > form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .signup > .data > form > input[type="text"],
+    .signup > .data > form > input[type="password"] {
+        width: 90%;
+        max-width: 280px;
+        margin-bottom: 0.5rem;
+        padding: 0.75rem;
+        border: none;
+        border-bottom: 1px solid var(--gray-300);
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s;
+    }
+    .signup > .data > form > input[type="text"]:focus,
+    .signup > .data > form > input[type="password"]:focus {
+        border-bottom: 2px solid var(--primary);
+        font-size: 1.25rem;
+        color: var(--primary);
+    }
+    .signup > .data > form > input:not(:placeholder-shown) {
+        border-bottom: 2px solid var(--primary);
+        font-size: 1.25rem;
+        color: var(--primary);
+    }
+    .signup > .data > form > input[type="submit"] {
+        width: 100%;
+        padding: 0.75rem;
+        background: var(--primary);
+        border: none;
+        border-radius: var(--border-radius-m);
+        font-family: var(--fontBold);
+        font-size: 1rem;
+        color: var(--white);
+        outline: none;
+    }
+
+    .signup > .link {
+        line-height: 1rem;
+        font-size: 0.875rem;
+        color: var(--gray-500);
+    }
+    .signup > .link > a {
+        text-decoration: underline;
+    }
+    .signup > .home {
+        position: relative;
+        width: 5vw;
+        min-width: 3rem;
+        height: 5vw;
+        min-height: 3rem;
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+    }
+    .signup > .home > span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 6vw;
+        min-width: 4rem;
+        height: 0.125rem;
+        background: var(--gray-300);
+        transition: all 0.3s;
+    }
+    .signup > .home > span:first-child {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .signup > .home > span:last-child {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    .signup > .home:hover > span {
+        background: var(--primary);
+    }
+</style>
+<div class="signup">
+    <div class="title">회원가입</div>
+    <div class="subtitle">#signup</div>
+    <div class="data">
+        <form action="/sign/signup" method="post">
+            <input type="text" name="id" placeholder="아이디를 입력하세요." />
+            <input
+                type="password"
+                name="pw"
+                placeholder="비밀번호를 입력하세요."
+            />
+            <input
+                type="password"
+                name="chk-pw"
+                placeholder="다시 한번 입력하세요."
+            />
+            <input type="text" name="name" placeholder="이름을 입력하세요." />
+            <input type="submit" value="회원가입" />
+        </form>
+    </div>
+    <div class="link">이미 회원이신가요? <a href="/sign/signin">로그인</a></div>
+    <a class="home" href="/">
+        <span></span>
+        <span></span>
+    </a>
+</div>
+<script>
+    console.log($("input[name=pw]").val());
+    $("input[name=chk-pw]").change(function () {
+        if ($("input[name=pw]").val() != $("input[name=chk-pw]").val()) {
+            $("input[name=chk-pw]").val("");
+            $("input[name=chk-pw]").attr(
+                "placeholder",
+                "비밀번호가 일치하지 않습니다."
+            );
+            $("input[name=chk-pw]").css(
+                "border-bottom",
+                "2px solid var(--red)"
+            );
+            $("input[name=chk-pw]::placeholder").css("color", "red");
+        }
+    });
+</script>
