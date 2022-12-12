@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('head') %>
+        <link href="/stylesheets/cart.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%- include('navbar')%>
+        <div class="page">
+            <div class="header">
+                <div class="func">
+                    <div>
+                        <span class="material-icons"> arrow_back </span>
+                        BACK
+                    </div>
+                </div>
+                <h5>장바구니</h5>
+                <p>회원님께서 구매하실 상품을 모아 쉽게 구매하세요.</p>
+            </div>
+            <div class="headermenu">
+                <a href="cart" class="selitem">장바구니</a>
+                <a href="sharedcart" class="item">공유장바구니</a>
+                <div class="space"></div>
+            </div>
+            <div class="list">
+                <div class="listheader">
+                    <div style="flex: 0.5">
+                        <div class="checkbox" style="flex: 0.5"></div>
+                    </div>
+                    <div style="flex: 1">NO</div>
+                    <div style="flex: 2">표지</div>
+                    <div style="flex: 3">도서명</div>
+                    <div style="flex: 1">가격</div>
+                    <div style="flex: 1">수량</div>
+                    <div style="flex: 1">소계</div>
+                    <div style="flex: 0.5">
+                        <div class="setting" style="flex: 0.5">
+                            <span
+                                class="material-icons"
+                                style="
+                                    width: 16px;
+                                    height: 16px;
+                                    line-height: 16px;
+                                "
+                            >
+                                delete
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="listbody">
+                    <% for(var i = 0; i < cartlist.length; i++) {%>
+                    <div class="item">
+                        <div style="flex: 0.5">
+                            <div class="checkbox" style="flex: 0.5"></div>
+                        </div>
+                        <div style="flex: 1"><%- i %></div>
+                        <div style="flex: 2">
+                            <img
+                                src="/bookimg/<%- cartlist[i].도서식별번호 %>.png"
+                                alt=""
+                                style="
+                                    width: 80px;
+                                    height: 100px;
+                                    background: var(--gray-700);
+                                    border-radius: 4px;
+                                "
+                            />
+                        </div>
+                        <div style="flex: 3"><%- cartlist[i].도서명 %></div>
+                        <div style="flex: 1"><%- cartlist[i].가격 %>원</div>
+                        <div style="flex: 1"><%- cartlist[i].수량 %>권</div>
+                        <div style="flex: 1">
+                            <%- cartlist[i].가격 * cartlist[i].수량 %>원
+                        </div>
+                        <div style="flex: 0.5">
+                            <div class="setting" style="flex: 0.5">
+                                <span
+                                    class="material-icons"
+                                    style="width: 16px; height: 16px"
+                                >
+                                    settings
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="listfooter"></div>
+            </div>
+            <div class="price">
+                <div class="pricecalc">
+                    <div>
+                        <p>총 상품금액</p>
+                        <h6>0원</h6>
+                    </div>
+                    <p>-</p>
+                    <div>
+                        <p>총 할인금액</p>
+                        <h6>0원</h6>
+                    </div>
+                    <p>+</p>
+                    <div>
+                        <p>총 배송금액</p>
+                        <h6>0원</h6>
+                    </div>
+                    <p>=</p>
+                    <div>
+                        <p>총 결제금액</p>
+                        <h6>0원</h6>
+                    </div>
+                </div>
+                <div class="order">
+                    <a href="" class="selorder"><p>선택 주문</p></a>
+                    <a href="" class="allorder"><p>전체 주문</p></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

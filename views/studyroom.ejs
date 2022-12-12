@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('head') %>
+        <link href="/stylesheets/studyroom.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%- include('navbar')%>
+        <div class="page">
+            <div class="roominfo">
+                <div class="banner">
+                    <span class="material-icons"> chat </span>
+                    실시간 토론
+                </div>
+                <div class="info">
+                    <p class="wraptitle">정보</p>
+                    <div class="divider"></div>
+                    <p>도서명</p>
+                    <span>데이터베이스 개론</span>
+                    <p>북스터디명</p>
+                    <span>데이터베이스 여행</span>
+                </div>
+                <div class="users">
+                    <p class="wraptitle">참가중</p>
+                    <div class="divider"></div>
+                    <p>방장</p>
+                    <span class="user"
+                        >김현수<span class="material-icons">
+                            flag_circle
+                        </span></span
+                    >
+                    <p>회원</p>
+                    <span class="user"
+                        >김기훈<span class="material-icons">
+                            flag_circle
+                        </span></span
+                    >
+                    <span class="user"
+                        >전탁준<span class="material-icons">
+                            flag_circle
+                        </span></span
+                    >
+                    <p class="desc">3명의 회원이 토론에 참여중입니다.</p>
+                    <p>강퇴할 회원</p>
+                    <select name="" id="">
+                        회원을 선택하세요.
+                    </select>
+                    <p class="desc">과반수 이상 동의시 강제퇴장됩니다.</p>
+                </div>
+                <div class="func1">
+                    <span class="material-icons"> create </span>주제 추가
+                </div>
+                <div class="func1">
+                    <span class="material-icons"> list </span>주제 목록
+                </div>
+                <div class="func2">
+                    <span class="material-icons"> delete </span>주제 삭제
+                </div>
+            </div>
+            <div class="roomcontent">
+                <div class="chat"><%- include('chat/chat1')%></div>
+                <div class="inputmsg">
+                    <input type="text" placeholder="대화를 입력하세요." />
+                    <button>전송</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

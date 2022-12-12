@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('head') %>
+        <link href="/stylesheets/study.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%- include('navbar')%>
+        <div class="page">
+            <div class="header">
+                <div class="func">
+                    <div>
+                        <span class="material-icons"> arrow_back </span>
+                        BACK
+                    </div>
+                </div>
+                <h5>참여중인 북스터디</h5>
+                <p>책을 읽고 서로 생각을 나눠보세요.</p>
+            </div>
+
+            <div class="roomlist">
+                <% for(var i = 0; i < roomlist.length; i++) { %>
+                <div class="room">
+                    <img
+                        src=""
+                        alt=""
+                        style="background: var(--gray-700); height: 100px"
+                    />
+                    <div class="roominfo">
+                        <h6><%- roomlist[i].북스터디이름 %></h6>
+                        <p><%- roomlist[i].북스터디이름 %></p>
+                        <span>~~~책</span>
+                        <div>
+                            <div>
+                                <p>인원</p>
+                                <span
+                                    ><%- roomlist[i].참가인원수 %>/<%-
+                                    roomlist[i].제한인원수 %></span
+                                >
+                            </div>
+                            <div>
+                                <p>토론시작일</p>
+                                <span
+                                    ><%- roomlist[i].방생성일자.getFullYear()
+                                    %>-<%- roomlist[i].방생성일자.getMonth() + 1
+                                    %>-<%- roomlist[i].방생성일자.getDate()
+                                    %></span
+                                >
+                            </div>
+                            <div>
+                                <p>상태</p>
+                                <% if(roomlist[i].진행상태여부 == 0) { %>
+                                <span>입장 가능</span>
+                                <% } else { %>
+                                <span>진행중</span>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %> <% for(var i = 0; i < 4-(roomlist.length%4); i++) { %>
+                <div class="room" style="visibility: hidden"></div>
+                <% } %>
+            </div>
+        </div>
+    </body>
+</html>

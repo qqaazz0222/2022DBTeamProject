@@ -1,0 +1,79 @@
+<style>
+    .popup {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        height: 400px;
+        background: var(--white);
+        border-radius: 4px;
+        z-index: 2001;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+    }
+    .popupbg {
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .popup > .content {
+        flex: 1;
+        padding: 40px;
+    }
+    .popup > .content > h6 {
+        width: 100%;
+        font-family: var(--fontBold);
+        font-size: 32px;
+    }
+    .popup > .content > .desc {
+        width: 100%;
+        font-size: 16px;
+        color: #666687;
+    }
+    .popup > .content > p {
+        width: 100%;
+        font-family: var(--fontBold);
+        font-size: 12px;
+    }
+    .popup > .content > input {
+        margin-top: 4px;
+        padding: 8px;
+        width: 404px;
+        font-size: 14px;
+        border: 1px solid #dcdce4;
+    }
+    .popup > .func {
+        display: flex;
+    }
+    .popup > .func > button {
+        flex: 1;
+        height: 48px;
+        font-family: var(--fontBold);
+        font-size: 18px;
+        border: none;
+    }
+    .popup > .func > button:first-child {
+        background: var(--blue);
+        color: var(--white);
+    }
+</style>
+<div class="popup">
+    <div class="content">
+        <h6>팝업명</h6>
+        <p class="desc">팝업 설명</p>
+        <br />
+        <p>부제목</p>
+        <input type="text" />
+    </div>
+    <div class="func">
+        <button>돌아가기</button>
+        <button>생성하기</button>
+    </div>
+</div>
+<div class="popupbg"></div>

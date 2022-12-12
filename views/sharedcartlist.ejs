@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('head') %>
+        <link href="/stylesheets/cart.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%- include('navbar')%>
+        <div class="page">
+            <div class="header">
+                <div class="func">
+                    <div>
+                        <span class="material-icons"> arrow_back </span>
+                        BACK
+                    </div>
+                    <button>장바구니 생성</button>
+                </div>
+                <h5>공유 장바구니</h5>
+                <p>회원님께서 구매하실 상품을 모아 쉽게 구매하세요.</p>
+            </div>
+            <div class="headermenu">
+                <a href="cart" class="item">장바구니</a>
+                <a href="sharedcart" class="selitem">공유장바구니</a>
+                <div class="space"></div>
+            </div>
+            <h6 style="margin-top: 12px">참여중인 공유 장바구니</h6>
+            <div class="list">
+                <div class="listheader">
+                    <div style="flex: 0.5">
+                        <div class="checkbox" style="flex: 0.5"></div>
+                    </div>
+                    <div style="flex: 0.5">NO</div>
+                    <div style="flex: 2">장바구니명</div>
+                    <div style="flex: 3">공유중인 회원</div>
+                    <div style="flex: 1.5">결제 동의 마감일</div>
+                    <div style="flex: 1">동의 현황</div>
+                    <div style="flex: 0.5">
+                        <div class="setting" style="flex: 0.5">
+                            <span
+                                class="material-icons"
+                                style="
+                                    width: 16px;
+                                    height: 16px;
+                                    line-height: 16px;
+                                "
+                            >
+                                settings
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="listbody">
+                    <% if(partlist.length == 0) { %>
+                    <img src="images/nodata.png" alt="" />
+                    <% } else { %> <% for(var i = 0; i < partlist.length; i++)
+                    {%>
+                    <div class="item">
+                        <div style="flex: 0.5">
+                            <div class="checkbox" style="flex: 0.5"></div>
+                        </div>
+                        <div style="flex: 0.5"><%- i+1 %></div>
+                        <div style="flex: 2">
+                            <a
+                                href="sharedcart/<%- partlist[i].공유장바구니식별번호 %>"
+                                ><%- partlist[i].장바구니명 %></a
+                            >
+                        </div>
+                        <div style="flex: 3">
+                            <%- partlist[i].공유중인회원 %>
+                        </div>
+                        <div style="flex: 1.5">
+                            <%- partlist[i].결제동의마감일 %>
+                        </div>
+                        <div style="flex: 1"><%- partlist[i].동의현황 %></div>
+                        <div style="flex: 0.5">
+                            <div class="setting" style="flex: 0.5">
+                                <span
+                                    class="material-icons"
+                                    style="
+                                        width: 16px;
+                                        height: 16px;
+                                        line-height: 16px;
+                                    "
+                                >
+                                    delete
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %><% } %>
+                </div>
+                <div class="listfooter"></div>
+            </div>
+            <h6 style="margin-top: 12px">초대받은 공유 장바구니</h6>
+            <div class="list">
+                <div class="listheader">
+                    <div style="flex: 0.5">
+                        <div class="checkbox" style="flex: 0.5"></div>
+                    </div>
+                    <div style="flex: 0.5">NO</div>
+                    <div style="flex: 2">장바구니명</div>
+                    <div style="flex: 3">초대를 보낸 회원</div>
+                    <div style="flex: 1">초대일</div>
+                    <div style="flex: 0.5">
+                        <div class="setting" style="flex: 0.5">
+                            <span
+                                class="material-icons"
+                                style="width: 16px; height: 16px"
+                            >
+                                settings
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="listbody">
+                    <% if(invitelist.length == 0) { %>
+                    <img src="images/nodata.png" alt="" />
+                    <% } else { %> <% for(var i = 0; i < invitelist.length; i++)
+                    {%>
+                    <div class="item">
+                        <div style="flex: 0.5">
+                            <div class="checkbox" style="flex: 0.5"></div>
+                        </div>
+                        <div style="flex: 0.5"><%- i+1 %></div>
+                        <div style="flex: 2">
+                            <%- invitelist[i].장바구니명 %>
+                        </div>
+                        <div style="flex: 3">
+                            <%- invitelist[i].초대를보낸회원 %>
+                        </div>
+                        <div style="flex: 1"><%- invitelist[i].초대일 %></div>
+                        <div style="flex: 0.5">
+                            <div class="setting" style="flex: 0.5">
+                                <span
+                                    class="material-icons"
+                                    style="
+                                        width: 16px;
+                                        height: 16px;
+                                        line-height: 16px;
+                                        text-align: center;
+                                    "
+                                >
+                                    add_box
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %><% } %>
+                </div>
+                <div class="listfooter"></div>
+            </div>
+        </div>
+    </body>
+</html>

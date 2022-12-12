@@ -1,0 +1,224 @@
+.page {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.material-icons {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.roominfo {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+}
+
+.roominfo>div {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    background: #FFFFFF;
+    border: 1px solid #EAEAEF;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.roominfo>.banner {
+    flex-direction: row;
+    align-items: center;
+    background: #EAF5FF;
+    border: 1px solid #B8E1FF;
+    color: #006096;
+}
+
+.roominfo p {
+    font-family: var(--fontBold);
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.roominfo .wraptitle {
+    color: #666687;
+    padding: 8px 0;
+}
+
+.roominfo .desc {
+    font-family: var(--font);
+    font-size: 12px;
+    color: #666687;
+    padding: 8px 0;
+}
+
+.roominfo .divider {
+    display: block;
+    height: 1px;
+    background: #EAEAEF;
+    margin-bottom: 8px;
+}
+
+.roominfo select {
+    padding: 8px;
+    border: 1px solid #DCDCE4;
+    border-radius: 4px;
+}
+
+.roominfo .user {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px 8px;
+}
+
+.roominfo .func1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fontBold);
+    color: #3592FF;
+    background: #F2F8FF;
+    border: 1px solid #99C7FD;
+}
+
+.roominfo .func2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fontBold);
+    color: #D02B20;
+    background: #FCECEA;
+    border: 1px solid #F5C0B8;
+}
+
+.roomcontent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #F9FCFF;
+    border-radius: 4px;
+}
+
+.roomcontent>.chat {
+    margin: 20px;
+    margin-bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.roomcontent>.chat .notice {
+    font-family: var(--fontBold);
+    font-size: 14px;
+    color: #999999;
+    margin-bottom: 20px;
+}
+
+.roomcontent>.chat .subject {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #F2F8FF;
+    border: 1px solid #99C7FD;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.roomcontent>.chat .subject>.material-icons {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    margin-left: 20px;
+    margin-right: 12px;
+    color: var(--blue);
+}
+
+.roomcontent>.chat .subject>div {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0;
+}
+
+.roomcontent>.chat .subject>div>h6 {
+    font-family: var(--fontBold);
+    font-size: 16px;
+}
+
+.roomcontent>.chat .subject>div>p {
+    font-size: 20px;
+}
+
+.roomcontent>.chat .my,
+.roomcontent>.chat .other {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 12px;
+}
+
+.roomcontent>.chat .space {
+    flex: 1;
+}
+
+.roomcontent>.chat .my>.chat {
+    background: var(--blue);
+    border-radius: 4px;
+    padding: 8px 12px;
+    color: var(--white);
+}
+
+.roomcontent>.chat .other>.img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    margin-right: 12px;
+    background: var(--gray-700);
+}
+
+.roomcontent>.chat .other>.chat {
+    display: flex;
+    flex-direction: column;
+}
+
+.roomcontent>.chat .other>.chat p {
+    font-family: var(--fontBold);
+    font-size: 14px;
+}
+
+.roomcontent>.chat .other>.chat span {
+    border: 1px solid var(--blue);
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.roomcontent>.inputmsg {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.roomcontent>.inputmsg input {
+    flex: 1;
+    padding-left: 16px;
+    border: 1px solid #DCDCE4;
+    border-radius: 4px;
+}
+
+.roomcontent>.inputmsg button {
+    width: 58px;
+    height: 40px;
+    margin-left: 8px;
+    background: var(--blue);
+    border: none;
+    border-radius: 4px;
+    font-family: var(--fontBold);
+    color: var(--white);
+}

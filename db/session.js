@@ -4,8 +4,8 @@ var options = {
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "11111111",
-    database: "booktore",
+    password: "00000000",
+    database: "mydb",
 };
 var sessionStore = new MySQLStore(options);
 module.exports = sessionStore;

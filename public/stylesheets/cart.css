@@ -1,0 +1,241 @@
+h5,
+h6 {
+    font-family: var(--fontBold);
+}
+
+.header {
+    background: #f6f6f9;
+    padding: 20px 58px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.header>p {
+    color: #666687;
+}
+
+.material-icons {
+    font-size: 16px;
+}
+
+.header>.info {
+    display: flex;
+    flex-direction: row;
+}
+
+.header>.info>div {
+    padding: 16px 28px;
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header>.info>div>p {
+    font-size: 8px;
+    font-family: var(--fontBold);
+}
+
+.header>.info>div>span {
+    font-size: 14px;
+}
+
+
+.header>.func {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--blue);
+    font-family: var(--fontBold);
+}
+
+.header>.func button {
+    padding: 6px 8px;
+    border: none;
+    border-radius: 4px;
+    background: var(--blue);
+    color: var(--white);
+    font-family: var(--fontBold);
+}
+
+.headermenu {
+    display: flex;
+    flex-direction: row;
+    background: #f6f6f9;
+}
+
+.headermenu>.selitem,
+.headermenu>.item {
+    padding: 12px 60px;
+    text-align: center;
+}
+
+.headermenu>.selitem {
+    font-family: var(--fontBold);
+    color: var(--blue);
+    background: var(--white);
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #e7e9ed;
+    border-bottom: none;
+}
+
+.headermenu>.item {
+    border-bottom: 1px solid #e7e9ed;
+    color: #8e8ea9;
+}
+
+.headermenu>.space {
+    border-bottom: 1px solid #e7e9ed;
+    flex: 1;
+}
+
+.listheader {
+    height: 56px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #e7e9ed;
+    border-bottom: 1px solid #f6f6f9;
+    border-radius: 4px 4px 0 0;
+}
+
+.listbody {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e7e9ed;
+    border-top: none;
+    border-bottom: 1px solid #f6f6f9;
+}
+
+.listheader>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--fontBold);
+    font-size: 12px;
+}
+
+.listbody>.item {
+    padding: 8px 0;
+}
+
+.listbody>.item>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 16px;
+}
+
+.listheader>div>.checkbox,
+.listbody>.item>div>.checkbox {
+    border: 1px solid #c0c0cf;
+    border-radius: 4px;
+    min-width: 16px;
+    min-height: 16px;
+    width: 16px;
+    height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    display: block;
+}
+
+.listheader>div>.setting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c0c0cf;
+    border-radius: 4px;
+    min-width: 32px;
+    min-height: 32px;
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    display: block;
+    color: #666687;
+}
+
+.listheader>div>.setting>span {
+    margin-top: 8px;
+}
+
+.listbody>.item {
+    display: flex;
+    flex-direction: row;
+}
+
+.listbody>.item>div>.setting {
+    color: #666687;
+}
+
+.listfooter {
+    height: 4px;
+    border: 1px solid #e7e9ed;
+    border-top: none;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.price {
+    margin-top: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #e7e9ed;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+}
+
+.price>.pricecalc {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.price>.pricecalc>div>p {
+    font-size: 12px;
+}
+
+.price>.pricecalc>div>h6 {
+    font-size: 24px;
+    font-family: var(--fontBold);
+}
+
+.price>.pricecalc>div>h6:last-child {
+    color: var(--blue);
+}
+
+.price>.order {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.price>.order>a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 48px;
+    border: 1px solid var(--blue);
+    background: var(--white);
+    color: var(--black);
+    font-size: 18px;
+    font-family: var(--fontBold);
+}
+
+.price>.order>a:first-child {
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.price>.order>a:last-child {
+    border-radius: 0 4px 4px 0;
+    background: var(--blue);
+    color: var(--white);
+}
