@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('head') %>
+        <link href="/stylesheets/cart.css" rel="stylesheet" />
+    </head>
+    <body>
+        <%- include('navbar')%>
+        <h1>공유장바구니 생성</h1>
+        <h2>공유장바구니를 만들어서 서로 장바구니를 공유해보아요!</h2>
+        <form action="/sharedcart/create/basket" method="post">
+            <h2>장바구니 이름</h2>
+            <div class="input-group flex-nowrap">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="공유장바구니이름"
+                    name="공유장바구니이름"
+                    aria-label="Username"
+                    aria-describedby="addon-wrapping"
+                />
+            </div>
+            <h2>구매 예정일</h2>
+            <div class="input-group flex-nowrap">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="구매예정일"
+                    name="구매예정일"
+                    aria-label="Username"
+                    aria-describedby="addon-wrapping"
+                />
+            </div>
+
+            <button class="button" type="submit">생성하기</button>
+        </form>
+    </body>
+</html>

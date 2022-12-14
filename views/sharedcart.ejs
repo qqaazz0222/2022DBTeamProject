@@ -14,9 +14,18 @@
                         BACK
                     </div>
                     <div>
-                        <button>결제자 변경</button>
-                        <button>결제 동의</button>
-                        <button>회원 초대</button>
+                        <a href="./change/chanagepayer">결제자 변경</a>
+
+                        <form action="./agree/yes" method="post" class="button">
+                            <input type="hidden" name="공유장바구니식별번호" />
+                            <button type="submit">결제 동의</button>
+                        </form>
+                        <a
+                            href="./agree/<%- cartlist[0].공유장바구니식별번호 %>"
+                            >결제 동의</a
+                        >
+
+                        <a href="./invite/inviteuser">회원 초대</a>
                     </div>
                 </div>
                 <h5>공유 장바구니</h5>
@@ -81,11 +90,14 @@
                                 "
                             />
                         </div>
-                        <div style="flex: 3"><%- cartlist[i].도서명 %></div>
-                        <div style="flex: 1"><%- cartlist[i].가격 %>원</div>
-                        <div style="flex: 1"><%- cartlist[i].수량 %>권</div>
+                        <div style="flex: 3"><%- cartlist[i].도서명%></div>
+                        <div style="flex: 1"><%- cartlist[i].도서가격%>원</div>
                         <div style="flex: 1">
-                            <%- cartlist[i].가격 * cartlist[i].수량 %>원
+                            <%- cartlist[i].도서추가수량%>권
+                        </div>
+                        <div style="flex: 1">
+                            <%- parseInt(cartlist[i].도서가격) *
+                            parseInt(cartlist[i].도서추가수량)%>원
                         </div>
                         <div style="flex: 0.5">
                             <div class="setting" style="flex: 0.5">
