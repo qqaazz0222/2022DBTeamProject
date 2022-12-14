@@ -14,22 +14,26 @@
                         BACK
                     </div>
                     <div>
-                        <a href="./change/chanagepayer">결제자 변경</a>
+                        <a
+                            href="./change/chanagepayer/<%- cartlist[0].공유장바구니식별번호 %>"
+                            class="button"
+                            >결제자 변경</a
+                        >
 
                         <form action="./agree/yes" method="post" class="button">
                             <input type="hidden" name="공유장바구니식별번호" />
                             <button type="submit">결제 동의</button>
                         </form>
-                        <a
-                            href="./agree/<%- cartlist[0].공유장바구니식별번호 %>"
-                            >결제 동의</a
-                        >
 
-                        <a href="./invite/inviteuser">회원 초대</a>
+                        <a
+                            href="./invite/inviteuser/<%- cartlist[0].공유장바구니식별번호 %>"
+                            class="button"
+                            >회원 초대</a
+                        >
                     </div>
                 </div>
                 <h5>공유 장바구니</h5>
-                <p><%- cartinfo[0].장바구니명 %></p>
+                <p><%- cartlist[0].공유장바구니이름 %></p>
                 <div class="info">
                     <div>
                         <p>공유중인 회원</p>
@@ -37,11 +41,14 @@
                     </div>
                     <div>
                         <p>결제 동의 마감일</p>
-                        <span><%- cartinfo[0].결제동의마감일 %></span>
+                        <span><%- cartlist[0].구매예정일 %></span>
                     </div>
                     <div>
                         <p>동의 현황</p>
-                        <span><%- cartinfo[0].동의현황 %></span>
+                        <span
+                            ><%- cartlist[0].결제확인회원수 %>/<%-
+                            cartlist[0].공유된회원수 %></span
+                        >
                     </div>
                 </div>
             </div>

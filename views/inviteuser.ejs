@@ -102,21 +102,17 @@
             }
         </style>
         <div class="signin">
-            <div class="title">공유장바구니 생성</div>
-            <div class="subtitle">#장바구니를 공유해보아요.</div>
+            <div class="title">회원 초대</div>
+            <div class="subtitle">#회원을 초대하세요.</div>
             <div class="data">
-                <form action="/sharedcart/create/basket" method="post">
+                <form action="./" method="post">
+                    <input type="hidden" name="cartid" value="<%- cartid %>" />
                     <input
                         type="text"
-                        name="공유장바구니이름"
-                        placeholder="장바구니 이름을 입력해주세요."
+                        name="userid"
+                        placeholder="초대할 회원 아이디를 입력하세요."
                     />
-                    <input
-                        type="text"
-                        name="구매예정일"
-                        placeholder="구매 예정일을 입력해주세요."
-                    />
-                    <input type="submit" value="생성하기" />
+                    <input type="submit" value="초대하기" />
                 </form>
             </div>
             <a class="home" href="/">

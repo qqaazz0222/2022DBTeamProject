@@ -102,21 +102,26 @@
             }
         </style>
         <div class="signin">
-            <div class="title">공유장바구니 생성</div>
-            <div class="subtitle">#장바구니를 공유해보아요.</div>
+            <div class="title">결제자 변경</div>
+            <div class="subtitle">#결제자를 변경하세요.</div>
             <div class="data">
-                <form action="/sharedcart/create/basket" method="post">
-                    <input
-                        type="text"
-                        name="공유장바구니이름"
-                        placeholder="장바구니 이름을 입력해주세요."
-                    />
-                    <input
-                        type="text"
-                        name="구매예정일"
-                        placeholder="구매 예정일을 입력해주세요."
-                    />
-                    <input type="submit" value="생성하기" />
+                <form action="./" method="post">
+                    <input type="hidden" name="cartid" value="<%- cartid %>" />
+                    <select
+                        name="chguser"
+                        id=""
+                        placeholder="asdadas"
+                        style="width: 100%; color: black"
+                    >
+                        <option>변경할 회원을 선택하세요.</option>
+                        <% for(let i = 0; i < userlist.length; i++ ) { %>
+
+                        <option value="<%- userlist[i].회원아이디 %>">
+                            <%- userlist[i].이름 %>
+                        </option>
+                        <% } %>
+                    </select>
+                    <input type="submit" value="변경하기" />
                 </form>
             </div>
             <a class="home" href="/">

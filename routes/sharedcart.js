@@ -45,22 +45,14 @@ router.get("/:id", async (req, res, next) => {
     const isLogined = req.session.isLogined;
     let sharedcartid = req.params.id;
     // 공유장바구니 식별번호 장바구니 항목
-    let cartlist = await pool.query(
-        "select * from 공유장바구니 s inner join 공유장바구니_항목 b on s.공유장바구니식별번호 = b.공유장바구니식별번호 inner join 도서 bo on b.도서식별번호 = bo.도서식별번호"
+    let cartinfo = pool.query(
+        "select * from 공유장바구니 where 공유장바구니식별번호 = ?",
+        [req.params.id]
     );
-
-    console.log("sss");
+    let cartlist = await pool.query(
+        "select * from 공유장바구니 s inner join 공유장바구니항목 b on s.공유장바구니식별번호 = b.공유장바구니식별번호 inner join 도서 bo on b.도서식별번호 = bo.도서식별번호"
+    );
     console.log(cartlist[0]);
-
-    cartinfo = [
-        {
-            공유장바구니식별번호: 1,
-            장바구니명: "데이터베이스 101분반",
-            공유중인회원: "-",
-            결제동의마감일: "2022-12-30",
-            동의현황: "진행전",
-        },
-    ];
     cartuserinfo = [
         {
             아이디: "st20181501",
@@ -82,20 +74,10 @@ router.get("/:id", async (req, res, next) => {
             users += ", ";
         }
     }
-    console.log(users);
-    // cartlist = [
-    //     {
-    //         도서식별번호: 4,
-    //         도서명: "데이터베이스 개론",
-    //         가격: 29_000,
-    //         수량: 10,
-    //         소계: 290_000,
-    //     },
-    // ];
 
     res.render("sharedcart", {
-        cartinfo,
         users,
+        cartinfo: cartinfo[0],
         cartlist: cartlist[0],
         isLogined,
     });
@@ -116,16 +98,24 @@ router.post("/create/basket", async (req, res, next) => {
     console.log(공유장바구니이름, 구매예정일);
 
     let today = new Date();
-    const year = today.getFullYear().toString();
-    const month = (today.getMonth() + 1).toString();
-    const date = today.getDate().toString();
-    const makeDate = year.concat("/", month).concat("/", date);
+    // const year = today.getFullYear().toString();
+    // const month = (today.getMonth() + 1).toString();
+    // const date = today.getDate().toString();
+    // const makeDate = year.concat("/", month).concat("/", date);
 
     try {
         console.log("sss");
         let create = await pool.query(
             "INSERT INTO 공유장바구니(공유장바구니이름, 생성자, 결제자,  생성일자 , 구매예정일) values(?, ?, ?, ? ,? )",
-            [공유장바구니이름, sess, sess, makeDate, 구매예정일]
+            [공유장바구니이름, sess, sess, today, 구매예정일]
+        );
+        let search = await pool.query(
+            "select 공유장바구니식별번호 from 공유장바구니 where 생성자 = ? order by 공유장바구니식별번호 desc;",
+            [req.session.uid]
+        );
+        let adduser = await pool.query(
+            "INSERT INTO 공유회원항목 values(?, ?, ?, ? ,? )",
+            [req.session.uid, search[0][0].공유장바구니식별번호, 1, 0, 1]
         );
         console.log("sss");
 
@@ -138,7 +128,7 @@ router.post("/create/basket", async (req, res, next) => {
 });
 
 // 결제 동의
-router.get("/agree/yes", async (req, res, next) => {
+router.post("/agree/yes", async (req, res, next) => {
     console.log("agree");
     const isLogined = req.session.isLogined;
     const uid = req.session.uid;
@@ -162,12 +152,28 @@ router.get("/agree/yes", async (req, res, next) => {
     }
 });
 
+router.get("/change/chanagepayer/:id", async (req, res, next) => {
+    try {
+        const cartid = req.params.id;
+        let userlist = await pool.query(
+            "select 회원아이디, 이름 from 회원 where 회원아이디 in (select 회원아이디 from 공유회원항목 where 공유장바구니식별번호 = ?)",
+            [cartid]
+        );
+        console.log(cartid, userlist[0]);
+        res.render("chgpayer", { cartid, userlist: userlist[0] });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 // 결제자 변경
 router.post("/change/chanagepayer", async (req, res, next) => {
     try {
+        const { chguser, cartid } = req.body;
         console.log("ccc");
         let chanagepayer = await pool.query(
-            "update 공유장바구니 set 결제자 = 'user2' where 장바구니식별번호 = 3 "
+            "update 공유장바구니 set 결제자 = ? where 공유장바구니식별번호 = ?;",
+            [chguser, cartid]
         );
         console.log("ccc");
 
@@ -180,25 +186,23 @@ router.post("/change/chanagepayer", async (req, res, next) => {
 });
 
 // 회원 초대 화면
-router.post("/invite/inviteuser", async (req, res, next) => {
+router.get("/invite/inviteuser/:id", async (req, res, next) => {
     try {
-        return res.send(
-            '<script type="text/javascript">alert("회원이 초대되었습니다."); document.location.href="/sharedcart/1";</script>'
-        );
+        const cartid = req.params.id;
+        res.render("inviteuser", { cartid });
     } catch (error) {
         console.log(error);
     }
 });
 
 // 회원 초대
-router.post("/invite/inviteuser2", async (req, res, next) => {
+router.post("/invite/inviteuser", async (req, res, next) => {
     try {
-        console.log("iii");
+        const { cartid, userid } = req.body;
         let inviteuser = await pool.query(
-            "insert into 공유회원항목(회원아이디,  공유장바구니식별번호,  접근권한여부,  결제수락여부, 초대수락 여부) values(?, ?, ?, ?, ?)",
-            [A, B, C, D, E]
+            "insert into 공유회원항목 values(?, ?, ?, ?, ?);",
+            [userid, parseInt(cartid), 1, 0, 0]
         );
-        console.log("iii");
 
         return res.send(
             '<script type="text/javascript">alert("회원이 초대되었습니다."); document.location.href="/sharedcart/1";</script>'
