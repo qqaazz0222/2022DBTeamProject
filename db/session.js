@@ -4,7 +4,7 @@ var options = {
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "00000000",
+    password: "1234",
     database: "mydb",
 };
 var sessionStore = new MySQLStore(options);

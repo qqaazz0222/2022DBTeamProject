@@ -6,6 +6,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var signRouter = require("./routes/sign");
 var studyRouter = require("./routes/study");
+var sharedRouter = require("./routes/sharedcart");
 
 var app = express();
 
@@ -21,5 +22,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/sign", signRouter);
 app.use("/study", studyRouter);
+app.use("/sharedcart", sharedRouter);
 
 module.exports = app;

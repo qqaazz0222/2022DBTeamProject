@@ -13,7 +13,10 @@
                         <span class="material-icons"> arrow_back </span>
                         BACK
                     </div>
-                    <button>장바구니 생성</button>
+
+                    <a href="sharedcart/create/bas" class="button"
+                        >장바구니 생성</a
+                    >
                 </div>
                 <h5>공유 장바구니</h5>
                 <p>회원님께서 구매하실 상품을 모아 쉽게 구매하세요.</p>
@@ -62,16 +65,19 @@
                         <div style="flex: 2">
                             <a
                                 href="sharedcart/<%- partlist[i].공유장바구니식별번호 %>"
-                                ><%- partlist[i].장바구니명 %></a
+                                ><%- partlist[i].공유장바구니이름 %></a
                             >
                         </div>
                         <div style="flex: 3">
-                            <%- partlist[i].공유중인회원 %>
+                            <%- partlist[i].공유된회원수 %>
                         </div>
                         <div style="flex: 1.5">
-                            <%- partlist[i].결제동의마감일 %>
+                            <%- partlist[i].구매예정일 %>
                         </div>
-                        <div style="flex: 1"><%- partlist[i].동의현황 %></div>
+                        <div style="flex: 1">
+                            <%- partlist[i].결제확인회원수 %>/<%-
+                            partlist[i].공유된회원수 %>
+                        </div>
                         <div style="flex: 0.5">
                             <div class="setting" style="flex: 0.5">
                                 <span
@@ -123,12 +129,10 @@
                         </div>
                         <div style="flex: 0.5"><%- i+1 %></div>
                         <div style="flex: 2">
-                            <%- invitelist[i].장바구니명 %>
+                            <%- invitelist[i].공유장바구니이름 %>
                         </div>
-                        <div style="flex: 3">
-                            <%- invitelist[i].초대를보낸회원 %>
-                        </div>
-                        <div style="flex: 1"><%- invitelist[i].초대일 %></div>
+                        <div style="flex: 3"><%- invitelist[i].생성자 %></div>
+                        <div style="flex: 1"><%- invitelist[i].생성일자 %></div>
                         <div style="flex: 0.5">
                             <div class="setting" style="flex: 0.5">
                                 <span
