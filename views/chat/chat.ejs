@@ -1,0 +1,25 @@
+<p class="notice">김기훈(st20181468)님이 참가하셨습니다.</p>
+<% for(var i = 0; i < chatlist.length; i++ ) { %> <%if(chatlist[i].주제여부 ==
+1) { %>
+<div class="subject">
+    <span class="material-icons"> info </span>
+    <div>
+        <h6>새로운 주제 등록</h6>
+        <p><%- chatlist[i].내용 %></p>
+    </div>
+</div>
+<% } else { %> <%if(chatlist[i].회원아이디 == uid) { %>
+<div class="my">
+    <div class="space"></div>
+    <div class="chat"><%- chatlist[i].내용 %></div>
+</div>
+<% } else { %>
+<div class="other">
+    <div class="img"></div>
+    <div class="chat">
+        <p><%- chatlist[i].회원아이디 %></p>
+        <span><%- chatlist[i].내용 %></span>
+    </div>
+    <div class="space"></div>
+</div>
+<% } %> <% } %> <% } %>

@@ -120,33 +120,4 @@ router.get("/sharedcart/:id", async (req, res, next) => {
     res.render("sharedcart", { cartinfo, users, cartlist, isLogined });
 });
 
-router.get("/study", async (req, res, next) => {
-    try {
-        const isLogined = req.session.isLogined;
-        const roomlist = await pool.query("SELECT * FROM 북스터디방;");
-        res.render("study", { roomlist: roomlist[0], isLogined });
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-router.get("/mystudy", async (req, res, next) => {
-    try {
-        const isLogined = req.session.isLogined;
-        const roomlist = await pool.query("SELECT * FROM 북스터디방;");
-        res.render("mystudy", { roomlist: roomlist[0], isLogined });
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-router.get("/studyroom/:id", async (req, res, next) => {
-    try {
-        const isLogined = req.session.isLogined;
-        res.render("studyroom", { isLogined });
-    } catch (error) {
-        console.log(error);
-    }
-});
-
 module.exports = router;

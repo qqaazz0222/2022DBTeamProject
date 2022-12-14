@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('head') %>
+        <link href="/stylesheets/studyfunc.css" rel="stylesheet" />
+    </head>
+    <body>
+        <style>
+            .signin {
+                width: 100vw;
+                max-width: 280px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .signin > .title {
+                margin-bottom: 0.5rem;
+                font-family: var(--fontBold);
+                font-size: 2rem;
+            }
+            .signin > .subtitle {
+                margin-bottom: 2rem;
+                font-size: 1rem;
+                color: var(--gray-500);
+            }
+            .signin > .data,
+            .signin > .data > form {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                margin-bottom: 0.5rem;
+            }
+            .signin > .data > form > input[type="text"],
+            .signin > .data > form > input[type="password"] {
+                width: 90%;
+                max-width: 280px;
+                margin-bottom: 0.5rem;
+                padding: 0.75rem;
+                border: none;
+                border-bottom: 1px solid var(--gray-300);
+                font-size: 1rem;
+                outline: none;
+                transition: all 0.3s;
+            }
+            .signin > .data > form > input[type="text"]:focus,
+            .signin > .data > form > input[type="password"]:focus {
+                border-bottom: 2px solid var(--primary);
+                font-size: 1.25rem;
+                color: var(--primary);
+            }
+            .signin > .data > form > input[type="submit"] {
+                width: 100%;
+                padding: 0.75rem;
+                background: var(--primary);
+                border: none;
+                border-radius: var(--border-radius-m);
+                font-family: var(--fontBold);
+                font-size: 1rem;
+                color: var(--white);
+                outline: none;
+            }
+            .signin > .link {
+                line-height: 1rem;
+                font-size: 0.875rem;
+                color: var(--gray-500);
+            }
+            .signin > .link > a {
+                text-decoration: underline;
+            }
+            .signin > .home {
+                position: relative;
+                width: 5vw;
+                min-width: 3rem;
+                height: 5vw;
+                min-height: 3rem;
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+            }
+            .signin > .home > span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                display: block;
+                width: 6vw;
+                min-width: 4rem;
+                height: 0.125rem;
+                background: var(--gray-300);
+                transition: all 0.3s;
+            }
+            .signin > .home > span:first-child {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            .signin > .home > span:last-child {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+            .signin > .home:hover > span {
+                background: var(--primary);
+            }
+        </style>
+        <div class="signin">
+            <div class="title">주제 추가</div>
+            <div class="subtitle">#토론 주제를 추가해보세요.</div>
+            <div class="data">
+                <form action="/study/addsubject" method="post">
+                    <input
+                        type="text"
+                        name="subject"
+                        placeholder="주제를 입력하세요."
+                    />
+                    <input
+                        name="ri"
+                        type="hidden"
+                        value="<%- roominfo.북스터디방식별번호 %>"
+                    />
+                    <input
+                        name="rr"
+                        type="hidden"
+                        value="<%- roominfo.진행회차 %>"
+                    />
+                    <input type="submit" value="추가하기" />
+                </form>
+            </div>
+            <a class="home" href="/">
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </body>
+</html>

@@ -74,6 +74,12 @@
     padding: 4px 8px;
 }
 
+.roominfo .func1>a,
+.roominfo .func2>a,
+.roominfo .func3>a {
+    color: var(--blue);
+}
+
 .roominfo .func1 {
     display: flex;
     flex-direction: row;
