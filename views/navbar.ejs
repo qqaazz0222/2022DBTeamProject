@@ -12,16 +12,25 @@
         </div>
 
         <div class="item">
+            <% if(!isLogined) { %>
+            <a class="topbtn" href="/sign/signin"
+                ><img src="/images/login.png" alt=""
+            /></a>
+            <a class="topbtn" href="/sign/signup"
+                ><img src="/images/signup.png" alt=""
+            /></a>
+            <% } else { %>
             <a class="topbtn" href="/cart"
                 ><img src="/images/cart.png" alt=""
             /></a>
-            <a class="topbtn" href="sign/signup"
+            <a class="topbtn" href="/mypage"
                 ><img src="/images/my.png" alt=""
             /></a>
-            <a class="topbtn" href="sign/signup"
+            <a class="topbtn" href="/sign/signin"
                 ><img src="/images/logout.png" alt=""
             /></a>
-            <a class="topbtn" href="sign/signup"
+            <% } %>
+            <a class="topbtn" href="/sign/signup"
                 ><img src="/images/question.png" alt=""
             /></a>
         </div>

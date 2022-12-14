@@ -24,10 +24,14 @@ router.get("/signin", async (req, res, next) => {
 router.post("/signin", async (req, res, next) => {
     const { id, pw } = req.body;
     try {
-        const user = await pool.query("SELECT * FROM user WHERE id = ?", [id]);
+        const user = await pool.query(
+            "SELECT * FROM 회원 WHERE 회원아이디 = ?",
+            [id]
+        );
+        console.log(user[0]);
         if (user[0].length > 0) {
-            if (pw === user[0][0].pw) {
-                req.session.uid = user[0][0].id;
+            if (pw === user[0][0].비밀번호) {
+                req.session.uid = user[0][0].회원아이디;
                 req.session.author_id = user[0][0].author_id;
                 req.session.isLogined = true;
                 req.session.save(function () {

@@ -2,16 +2,27 @@ const express = require("express");
 const session = require("express-session");
 const router = express.Router();
 const pool = require("../db/db");
+const sessionStore = require("../db/session");
+
+router.use(
+    session({
+        secret: "sessionkey",
+        resave: false,
+        saveUninitialized: true,
+        store: sessionStore,
+    })
+);
 
 router.get("/", async (req, res, next) => {
+    const isLogined = req.session.isLogined;
     // const book = await pool.query("SELECT * FROM 도서;");
     // let users = await pool.query("SELECT * FROM 회원;");
     const book = await pool.query("SELECT * FROM 도서;");
-    console.log(book[0]);
-    res.render("home", { book: book[0] });
+    res.render("home", { book: book[0], isLogined });
 });
 
 router.get("/cart", async (req, res, next) => {
+    const isLogined = req.session.isLogined;
     const cartlist = [
         {
             도서식별번호: 1,
@@ -35,7 +46,7 @@ router.get("/cart", async (req, res, next) => {
             소계: 16_000,
         },
     ];
-    res.render("cart", { cartlist });
+    res.render("cart", { cartlist, isLogined });
 });
 
 router.get("/sharedcart", async (req, res, next) => {
@@ -58,10 +69,11 @@ router.get("/sharedcart", async (req, res, next) => {
     //         초대일: "2022-12-15",
     //     },
     // ];
-    res.render("sharedcartlist", { partlist, invitelist });
+    res.render("sharedcartlist", { partlist, invitelist, isLogined });
 });
 
 router.get("/sharedcart/:id", async (req, res, next) => {
+    const isLogined = req.session.isLogined;
     let sharedcartid = req.params.id;
     // 공유장바구니식별번호로 조회한 장바구니 정보, sql문 추가 필요
     cartinfo = [
@@ -105,13 +117,14 @@ router.get("/sharedcart/:id", async (req, res, next) => {
         },
     ];
 
-    res.render("sharedcart", { cartinfo, users, cartlist });
+    res.render("sharedcart", { cartinfo, users, cartlist, isLogined });
 });
 
 router.get("/study", async (req, res, next) => {
     try {
+        const isLogined = req.session.isLogined;
         const roomlist = await pool.query("SELECT * FROM 북스터디방;");
-        res.render("study", { roomlist: roomlist[0] });
+        res.render("study", { roomlist: roomlist[0], isLogined });
     } catch (error) {
         console.log(error);
     }
@@ -119,8 +132,9 @@ router.get("/study", async (req, res, next) => {
 
 router.get("/mystudy", async (req, res, next) => {
     try {
+        const isLogined = req.session.isLogined;
         const roomlist = await pool.query("SELECT * FROM 북스터디방;");
-        res.render("mystudy", { roomlist: roomlist[0] });
+        res.render("mystudy", { roomlist: roomlist[0], isLogined });
     } catch (error) {
         console.log(error);
     }
@@ -128,7 +142,8 @@ router.get("/mystudy", async (req, res, next) => {
 
 router.get("/studyroom/:id", async (req, res, next) => {
     try {
-        res.render("studyroom", {});
+        const isLogined = req.session.isLogined;
+        res.render("studyroom", { isLogined });
     } catch (error) {
         console.log(error);
     }
