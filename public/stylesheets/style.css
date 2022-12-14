@@ -97,6 +97,11 @@ a {
     color: var(--black);
 }
 
+a:hover {
+    text-decoration: none;
+    color: var(--black);
+}
+
 html {
     font-family: 'dotum';
     font-size: 16px;
